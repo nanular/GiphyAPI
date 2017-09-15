@@ -1,21 +1,16 @@
 $(document).ready(function()
 {
 
-
-
-
-
-
-
-
-
 var subjects =
 [
 	"Futurama",
 	"Napoleon Dynamite",
 	"NBA",
 	"Smashing Pumpkins",
-	"My Little Pony"
+	"My Little Pony",
+	"Jeopardy",
+	"JavaScript",
+	"Bad Dancing"
 ]
 
 
@@ -24,7 +19,7 @@ var toSearch =
 	baseURL: "http://api.giphy.com/v1/gifs/search?",
 	apiKey: "&api_key=83ae0d4a699248e4a511e87157b267f5",
 	q: "q=ben+stiller",
-	limit: "&limit=10",
+	limit: "&limit=15",
 	rating: "&rating=g"
 }
 
@@ -77,26 +72,45 @@ $(document).on("click", ".pullGifs", function()
 
 	.done(function(apireturn)
 	{
-		console.log(apireturn);
 		var results = apireturn.data;
+		$("#giphyImages").empty();
 		console.log(results);
-		console.log(results[0].images.fixed_height.url)
 
 		for(i = 0; results.length > i; i++)
 		{
-			var giphyImage = $("<img>").attr("src", results[i].images.fixed_height.url);
-			$("#giphyImages").prepend(giphyImage);
+			var giphyResult = $("<div>").addClass("giphyImageAndRating")
+			var giphyImage = $("<img>")
+				.attr("src", results[i].images.fixed_height_still.url)
+				.attr("playing", "false")
+				.data("gifData", results[i].images)
+				.addClass("playGif")
+				.appendTo(giphyResult);
+			giphyResult.prepend("Rating: " + results[i].rating + "<br>");
+			$("#giphyImages").prepend(giphyResult);
 		}
 		
 	})
 
-
-
-
-
 })
 
 
+
+$(document).on("click", ".playGif", function()
+{
+	var playState = ($(this).attr("playing") == "true");
+	
+	if(playState)
+	{
+		$(this).attr("src", $(this).data("gifData").fixed_height_still.url);
+        $(this).attr("playing", "false");
+	}
+	else
+	{
+		$(this).attr("src", $(this).data("gifData").fixed_height.url);
+        $(this).attr("playing", "true");
+	}
+
+})
 
 
 
