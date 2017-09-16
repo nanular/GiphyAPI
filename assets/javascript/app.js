@@ -10,7 +10,9 @@ var subjects =
 	"My Little Pony",
 	"Jeopardy",
 	"JavaScript",
-	"Bad Dancing"
+	"Bad Dancing",
+	"Breaking Bad",
+	"Kawhi Leonard"
 ]
 
 
@@ -19,7 +21,7 @@ var toSearch =
 	baseURL: "http://api.giphy.com/v1/gifs/search?",
 	apiKey: "&api_key=83ae0d4a699248e4a511e87157b267f5",
 	q: "q=ben+stiller",
-	limit: "&limit=15",
+	limit: "&limit=10",
 	rating: "&rating=g"
 }
 
