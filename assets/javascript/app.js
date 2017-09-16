@@ -85,7 +85,7 @@ $(document).on("click", ".pullGifs", function()
 				.data("gifData", results[i].images)
 				.addClass("playGif")
 				.appendTo(giphyResult);
-			giphyResult.prepend("Rating: " + results[i].rating + "<br>");
+			giphyResult.prepend("Rating: <span>" + results[i].rating + "</span><br>");
 			$("#giphyImages").prepend(giphyResult);
 		}
 		
